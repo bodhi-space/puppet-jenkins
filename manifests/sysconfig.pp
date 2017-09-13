@@ -12,6 +12,12 @@ define jenkins::sysconfig(
     default  => fail( "Unsupported OSFamily ${::osfamily}" )
   }
 
+  file { 'Jenkins sysconfig file':
+    path  => "${path}/jenkins",
+    mode  => '0644',
+    owner => 'root',
+  }
+
   file_line { "Jenkins sysconfig setting ${name}":
     path   => "${path}/jenkins",
     line   => "${name}=\"${value}\"",
